@@ -1,5 +1,7 @@
 import "./App.scss";
+
 import Dictionary from "./components/dictionary/Dictionary";
+import Header from "./components/header/Header";
 import React, { useEffect, useState } from "react";
 
 function App() {
@@ -16,8 +18,24 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
-      <Dictionary words={words} />
+    <div class="app d-flex h-100 text-center text-white bg-dark">
+      <div className="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <Header />
+        <Dictionary words={words} />
+        <footer class="mt-auto text-white-50">
+          <p>
+            Cover template for{" "}
+            <a href="https://getbootstrap.com/" class="text-white">
+              Bootstrap
+            </a>
+            , by{" "}
+            <a href="https://twitter.com/mdo" class="text-white">
+              @mdo
+            </a>
+            .
+          </p>
+        </footer>
+      </div>
     </div>
   );
 }

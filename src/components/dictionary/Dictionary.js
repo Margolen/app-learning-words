@@ -9,7 +9,7 @@ function Dictionary(props) {
   ));
 
   return (
-    <table className="table table-striped">
+    <table className="table table-dark table-striped">
       <thead>
         <tr>
           <th scope="col">English</th>
