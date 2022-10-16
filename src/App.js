@@ -1,23 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import Dictionary from "./components/dictionary/Dictionary";
+import React, { useEffect, useState } from "react";
 
 function App() {
+  const [words, setWords] = useState([]);
+
+  const fetchData = async () => {
+    const response = await fetch("http://itgirlschool.justmakeit.ru/api/words");
+    const data = await response.json();
+    return setWords(data);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Dictionary words={words} />
     </div>
   );
 }
