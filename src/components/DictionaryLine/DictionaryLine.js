@@ -14,10 +14,22 @@ function DictionaryLine(props) {
     const word = props.word;
     return (
         <tr>
-            <td>{word.english}</td>
-            <td>{word.transcription}</td>
-            <td>{word.russian}</td>
-            <td>{word.tags}</td>
+            { editMode
+                ? <td><input type="text" value={word.english} /> </td>
+                : <td>{word.english}</td>
+            }
+            { editMode
+                ? <td><input type="text" value={word.transcription} /> </td>
+                : <td>{word.transcription}</td>
+            }
+            { editMode
+                ? <td><input type="text" value={word.russian} /></td>
+                : <td>{word.russian}</td>
+            }
+            { editMode
+                ? <td><input type="text" value={word.tags} /> </td>
+                : <td>{word.tags}</td>
+            }
             <td>
                 <button type="button" className="btn btn-warning" onClick={handleOnEditClick}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -35,7 +47,7 @@ function DictionaryLine(props) {
                     </svg>
                 </button>
                 {" "}
-                { editMode &&
+                {editMode &&
                     <button type="button" className="btn btn-success" onClick={handleOnSaveClick}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                              className="bi bi-check-circle-fill" viewBox="0 0 16 16">
