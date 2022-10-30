@@ -1,0 +1,21 @@
+$mainColor: rgb(78, 78, 158);
+$fontColor: #000;
+
+
+.card {
+  width: 30%;
+  margin: 10px;
+}
+
+.card-english {
+  font-weight: bold;
+  color: $fontColor;
+}
+
+.card button {
+  width: 100%;
+  height: 30px;
+  font-size: large;
+  margin-top: 15px;
+  background-color: $mainColor;
+}
