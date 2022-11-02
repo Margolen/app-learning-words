@@ -1,7 +1,7 @@
 import DictionaryLine from "../DictionaryLine/DictionaryLine";
 
 function Dictionary(props) {
-    const words = props.words.map((word) => <DictionaryLine word={word} />);
+    const words = props.words.map((word) => <DictionaryLine word={word} key={word.id}/>);
 
     return (
         <table className="table table-dark table-striped table-bordered align-middle text-start">

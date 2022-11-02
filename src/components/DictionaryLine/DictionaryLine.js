@@ -1,7 +1,9 @@
 import {useState} from "react";
 
 function DictionaryLine(props) {
+    const word = props.word;
     const [editMode, setEditMode] = useState(false);
+    const [editInput, setEditInput] = useState(word);
 
     function handleOnEditClick() {
         setEditMode(true);
@@ -11,23 +13,26 @@ function DictionaryLine(props) {
         setEditMode(false);
     }
 
-    const word = props.word;
+    function handleOnInputEnglish(event) {
+        setEditInput({...editInput, english: event.target.value});
+    }
+
     return (
         <tr>
-            { editMode
-                ? <td><input type="text" value={word.english} /> </td>
-                : <td>{word.english}</td>
+            {editMode
+                ? <td><input type="text" defaultValue={editInput.english} onChange={handleOnInputEnglish}/></td>
+                : <td>{editInput.english}</td>
             }
-            { editMode
-                ? <td><input type="text" value={word.transcription} /> </td>
+            {editMode
+                ? <td><input type="text" defaultValue={word.transcription}/></td>
                 : <td>{word.transcription}</td>
             }
-            { editMode
-                ? <td><input type="text" value={word.russian} /></td>
+            {editMode
+                ? <td><input type="text" defaultValue={word.russian}/></td>
                 : <td>{word.russian}</td>
             }
-            { editMode
-                ? <td><input type="text" value={word.tags} /> </td>
+            {editMode
+                ? <td><input type="text" defaultValue={word.tags}/></td>
                 : <td>{word.tags}</td>
             }
             <td>
