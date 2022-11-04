@@ -1,42 +1,42 @@
 import {useState} from "react";
 
-function DictionaryLine(props) {
-    const word = props.word;
+function DictionaryLine({word, createOrUpdateWord}) {
+
     const [editMode, setEditMode] = useState(false);
     const [editInput, setEditInput] = useState(word);
 
-    function handleOnEditClick() {
-        setEditMode(true);
-    }
 
     function handleOnSaveClick() {
         setEditMode(false);
+        createOrUpdateWord(editInput)
     }
 
-    function handleOnInputEnglish(event) {
-        setEditInput({...editInput, english: event.target.value});
+    function changeWord(attributeName, value) {
+        const tmpWord = {...editInput}
+        tmpWord[attributeName] = value
+        setEditInput(tmpWord);
     }
-
+    const displayProps = ["english", "transcription", "russian", "tags"]
     return (
         <tr>
-            {editMode
-                ? <td><input type="text" defaultValue={editInput.english} onChange={handleOnInputEnglish}/></td>
-                : <td>{editInput.english}</td>
-            }
-            {editMode
-                ? <td><input type="text" defaultValue={word.transcription}/></td>
-                : <td>{word.transcription}</td>
-            }
-            {editMode
-                ? <td><input type="text" defaultValue={word.russian}/></td>
-                : <td>{word.russian}</td>
-            }
-            {editMode
-                ? <td><input type="text" defaultValue={word.tags}/></td>
-                : <td>{word.tags}</td>
+            {Object.entries(word).map(([key, value]) => {
+                    console.log(key, value)
+                    if (!displayProps.find(prop => key === prop)) {
+                        return ""
+                    }
+                    return (
+                        <>
+                            <td>{editMode ?
+                                <input type="text" defaultValue={value}
+                                    onChange={(event) => changeWord(key, event.target.value)}/>
+                                : value
+                            }</td>
+                        </>
+                    )
+                })
             }
             <td>
-                <button type="button" className="btn btn-warning" onClick={handleOnEditClick}>
+                <button type="button" className="btn btn-warning" onClick={() => setEditMode(!editMode)}>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                          className="bi bi-pencil-fill" viewBox="0 0 16 16">
                         <path
