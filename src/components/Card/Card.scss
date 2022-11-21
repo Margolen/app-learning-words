@@ -1,14 +1,16 @@
-$mainColor: rgb(78, 78, 158);
+$mainColor: rgb(219, 160, 42);
 $fontColor: #000;
-
-
-.card {
-  width: 30%;
-  margin: 10px;
-}
 
 .card-english {
   font-weight: bold;
+  color: $fontColor;
+}
+
+.card-russian {
+  color: $fontColor;
+}
+
+.card-transcription {
   color: $fontColor;
 }
 
